@@ -14,6 +14,12 @@ Requirements:
 
 - Node.js 18+
 
+Change the directory:
+
+```bash
+cd /directory/to/lagcord/folder
+```
+
 Start the app:
 
 ```bash
