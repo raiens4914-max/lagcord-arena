@@ -322,7 +322,24 @@ eventSource.addEventListener("presence", (event) => {
   onlineUsers = payload.onlineUsers || onlineUsers;
   renderMemberList();
 });
+eventSource.addEventListener("error", () => {
+  setStatus("Live sync had a hiccup. Falling back to automatic refresh.", true);
+});
 
 refreshSession().catch(() => {
   setStatus("Could not load session yet. Refresh the page if the server just restarted.", true);
+});
+
+setInterval(() => {
+  refreshSession().catch(() => {
+    setStatus("Background refresh could not reach the server.", true);
+  });
+}, 4000);
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    refreshSession().catch(() => {
+      setStatus("Could not refresh when returning to the tab.", true);
+    });
+  }
 });

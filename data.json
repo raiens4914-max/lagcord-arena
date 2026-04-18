@@ -5,12 +5,20 @@
       "password": "aaa"
     },
     {
-      "username": "tester3928",
+      "username": "gamertag",
+      "password": "123"
+    },
+    {
+      "username": "alpha2243",
       "password": "pass123"
     },
     {
-      "username": "gamertag",
-      "password": "123"
+      "username": "beta2159",
+      "password": "pass123"
+    },
+    {
+      "username": "afaf",
+      "password": "afafaf"
     }
   ],
   "channels": {
@@ -30,10 +38,31 @@
         "gif": "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"
       },
       {
-        "id": "3cecf49cc2d4bc81",
-        "user": "tester3928",
-        "time": "2:01 PM",
-        "text": "Functional test message",
+        "id": "ee7196707bc768b2",
+        "user": "swiftysro",
+        "time": "2:11 PM",
+        "text": "aasdasdas",
+        "gif": ""
+      },
+      {
+        "id": "82fb3f6c0de873f9",
+        "user": "alpha2243",
+        "time": "2:13 PM",
+        "text": "cross-user-check",
+        "gif": ""
+      },
+      {
+        "id": "1a08dfd2e49a23d6",
+        "user": "afaf",
+        "time": "2:15 PM",
+        "text": "afaf",
+        "gif": ""
+      },
+      {
+        "id": "423f4eba7526c6cf",
+        "user": "swiftysro",
+        "time": "2:16 PM",
+        "text": "Live check from Codex right now.",
         "gif": ""
       }
     ],
