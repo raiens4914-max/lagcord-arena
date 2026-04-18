@@ -1,0 +1,13 @@
+{
+  "name": "lagcord-arena",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Discord-inspired gamer chat app with simple accounts and shared live chat.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

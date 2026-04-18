@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lagcord Arena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="server-rail">
+      <div class="brand-mark">L</div>
+      <button class="server-pill active">AFK</button>
+      <button class="server-pill">GG</button>
+      <button class="server-pill">XP</button>
+      <button class="server-pill">IRL</button>
+      <button class="server-pill plus">+</button>
+    </aside>
+
+    <aside class="channel-sidebar">
+      <div class="sidebar-header">
+        <div>
+          <p class="eyebrow">Arena Hub</p>
+          <h1>Lagcord</h1>
+        </div>
+        <button class="ghost-button">Invite</button>
+      </div>
+
+      <section class="hero-card">
+        <p class="hero-badge">Live Event</p>
+        <h2>Meme Mayhem Finals</h2>
+        <p>Queue with your squad, spam the GIF cannon, and roast the leaderboard.</p>
+        <div class="hero-stats">
+          <span>8,421 online</span>
+          <span>420 in voice</span>
+        </div>
+      </section>
+
+      <section class="channel-group">
+        <div class="group-title">
+          <span>Text Channels</span>
+        </div>
+        <button class="channel-item active" data-channel="general"># general-chat</button>
+        <button class="channel-item" data-channel="clips"># clip-drops</button>
+        <button class="channel-item" data-channel="memes"># cursed-memes</button>
+        <button class="channel-item" data-channel="lfg"># lfg-ranked</button>
+      </section>
+
+      <section class="channel-group">
+        <div class="group-title">
+          <span>Voice Channels</span>
+        </div>
+        <button class="channel-item voice">Speaker Stage <span>12</span></button>
+        <button class="channel-item voice">Raid Party <span>5</span></button>
+        <button class="channel-item voice">Chill Farm <span>3</span></button>
+      </section>
+
+      <section class="channel-group">
+        <div class="group-title">
+          <span>Direct Messages</span>
+        </div>
+        <button class="dm-item active">
+          <span class="avatar sm neon-orange">J</span>
+          <span>Jinx.exe</span>
+        </button>
+        <button class="dm-item">
+          <span class="avatar sm neon-green">K</span>
+          <span>Keyboard Wizard</span>
+        </button>
+        <button class="dm-item">
+          <span class="avatar sm neon-pink">M</span>
+          <span>Meme Dealer</span>
+        </button>
+      </section>
+
+      <div class="user-card">
+        <span class="avatar neon-cyan" id="profile-avatar">?</span>
+        <div>
+          <strong id="profile-name">Guest Mode</strong>
+          <p id="profile-role">Create an account to join chat</p>
+        </div>
+        <button class="ghost-button small hidden" id="logout-button" type="button">Log Out</button>
+      </div>
+    </aside>
+
+    <main class="main-pane">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Trending Room</p>
+          <h2 id="channel-title"># general-chat</h2>
+        </div>
+        <div class="topbar-actions">
+          <div class="search-box">
+            <input type="text" placeholder="Search clips, memes, teammates">
+          </div>
+          <button class="ghost-button">Stream</button>
+          <button class="ghost-button accent">Start Raid</button>
+        </div>
+      </header>
+
+      <section class="announcement-bar">
+        <div>
+          <strong>Patch Notes:</strong> Nitro-style profile effects, emoji reactions, and meme alerts are live.
+        </div>
+        <button class="ghost-button small">View Quests</button>
+      </section>
+
+      <div class="content-grid">
+        <section class="chat-panel">
+          <div class="pinned-banner">
+            <span>Pinned:</span>
+            <p>Drop your spiciest clip before the midnight tournament. Winner gets the golden keyboard.</p>
+          </div>
+
+          <div class="message-feed" id="message-feed"></div>
+
+          <form class="composer" id="composer">
+            <div class="composer-tools">
+              <button type="button" class="tool-button" id="gif-toggle">GIF</button>
+              <button type="button" class="tool-button">Meme</button>
+              <button type="button" class="tool-button">Poll</button>
+            </div>
+            <label class="composer-input">
+              <input id="message-input" type="text" placeholder="Create an account to chat" disabled>
+            </label>
+            <button class="send-button" id="send-button" type="submit" disabled>Send</button>
+          </form>
+        </section>
+
+        <aside class="side-stack">
+          <section class="feature-card gif-card" id="gif-panel">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">GIF Loadout</p>
+                <h3>Reaction Arsenal</h3>
+              </div>
+              <span class="live-dot">LIVE</span>
+            </div>
+            <div class="gif-grid">
+              <button class="gif-tile" data-gif="https://media.giphy.com/media/l0HU7JI1m1Zxg1NYk/giphy.gif">
+                <img src="https://media.giphy.com/media/l0HU7JI1m1Zxg1NYk/giphy.gif" alt="Victory dance gif">
+              </button>
+              <button class="gif-tile" data-gif="https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif">
+                <img src="https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif" alt="Excited gamer gif">
+              </button>
+              <button class="gif-tile" data-gif="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif">
+                <img src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="No way gif">
+              </button>
+              <button class="gif-tile" data-gif="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif">
+                <img src="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif" alt="Epic celebration gif">
+              </button>
+            </div>
+          </section>
+
+          <section class="feature-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Squad Goals</p>
+                <h3>Server Quests</h3>
+              </div>
+            </div>
+            <ul class="quest-list">
+              <li><span>Win 3 ranked matches</span><strong>72%</strong></li>
+              <li><span>Post 10 memes</span><strong>10/10</strong></li>
+              <li><span>Join a voice raid</span><strong>Ready</strong></li>
+            </ul>
+          </section>
+
+          <section class="feature-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Squad Access</p>
+                <h3>Create Account</h3>
+              </div>
+            </div>
+            <form class="auth-form" id="auth-form">
+              <label class="auth-field">
+                <span>Username</span>
+                <input id="username-input" type="text" placeholder="Pick your gamer tag" minlength="3" maxlength="24">
+              </label>
+              <label class="auth-field">
+                <span>Password</span>
+                <input id="password-input" type="password" placeholder="At least 3 characters" minlength="3">
+              </label>
+              <div class="auth-actions">
+                <button class="ghost-button accent" type="submit" data-mode="register">Create</button>
+                <button class="ghost-button" type="button" id="login-button">Log In</button>
+              </div>
+              <p class="auth-status" id="auth-status">Create an account so your name appears next to every message.</p>
+            </form>
+          </section>
+
+          <section class="feature-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Online Now</p>
+                <h3>Party Roster</h3>
+              </div>
+            </div>
+            <div class="member-list" id="member-list"></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <template id="message-template">
+    <article class="message">
+      <span class="avatar message-avatar"></span>
+      <div class="message-body">
+        <div class="message-meta">
+          <strong class="message-user"></strong>
+          <span class="message-time"></span>
+        </div>
+        <p class="message-text"></p>
+        <img class="message-gif" alt="Shared gif">
+        <div class="reaction-row">
+          <button type="button" class="reaction-pill">FIRE 12</button>
+          <button type="button" class="reaction-pill">LOL 8</button>
+          <button type="button" class="reaction-pill">+ React</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
