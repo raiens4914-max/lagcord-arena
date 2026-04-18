@@ -1,0 +1,68 @@
+{
+  "users": [
+    {
+      "username": "swiftysro",
+      "password": "aaa"
+    },
+    {
+      "username": "tester3928",
+      "password": "pass123"
+    },
+    {
+      "username": "gamertag",
+      "password": "123"
+    }
+  ],
+  "channels": {
+    "general": [
+      {
+        "id": "seed-general-1",
+        "user": "Jinx.exe",
+        "time": "Today at 6:13 PM",
+        "text": "Tournament lobby opens in 20. Someone please make the team intro more dramatic than last time.",
+        "gif": ""
+      },
+      {
+        "id": "seed-general-2",
+        "user": "Meme Dealer",
+        "time": "Today at 6:15 PM",
+        "text": "Already done. Added bass boost, airhorns, and a spinning lootbox transition for emotional damage.",
+        "gif": "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"
+      },
+      {
+        "id": "3cecf49cc2d4bc81",
+        "user": "tester3928",
+        "time": "2:01 PM",
+        "text": "Functional test message",
+        "gif": ""
+      }
+    ],
+    "clips": [
+      {
+        "id": "seed-clips-1",
+        "user": "BossFightMom",
+        "time": "Today at 5:52 PM",
+        "text": "Triple headshot from the worst angle imaginable. I am accepting fan edits immediately.",
+        "gif": "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
+      }
+    ],
+    "memes": [
+      {
+        "id": "seed-memes-1",
+        "user": "Meme Dealer",
+        "time": "Today at 4:20 PM",
+        "text": "Posting this for morale. If your KDA is low, simply become the comic relief.",
+        "gif": "https://media.giphy.com/media/Qs1aGsytdmAg854JWN/giphy.gif"
+      }
+    ],
+    "lfg": [
+      {
+        "id": "seed-lfg-1",
+        "user": "RaidBot",
+        "time": "Today at 6:00 PM",
+        "text": "Looking for 2 more ranked grinders. Requirements: good vibes, map awareness, and zero backseat coaching.",
+        "gif": ""
+      }
+    ]
+  }
+}

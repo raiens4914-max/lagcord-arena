@@ -22,6 +22,7 @@ const contentTypes = {
 
 const seededState = {
   users: [],
+  sessions: {},
   channels: {
     general: [
       {

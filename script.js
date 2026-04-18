@@ -8,6 +8,7 @@ const gifToggle = document.getElementById("gif-toggle");
 const gifPanel = document.getElementById("gif-panel");
 const channelButtons = document.querySelectorAll(".channel-item[data-channel]");
 const gifButtons = document.querySelectorAll(".gif-tile");
+const searchInput = document.getElementById("search-input");
 const authForm = document.getElementById("auth-form");
 const usernameInput = document.getElementById("username-input");
 const passwordInput = document.getElementById("password-input");
@@ -18,10 +19,13 @@ const profileAvatar = document.getElementById("profile-avatar");
 const profileName = document.getElementById("profile-name");
 const profileRole = document.getElementById("profile-role");
 const logoutButton = document.getElementById("logout-button");
+const toast = document.getElementById("toast");
+const uiActionButtons = document.querySelectorAll("[data-ui-action]");
 
 let activeChannel = "general";
 let pendingGif = "";
 let currentUser = null;
+let searchTerm = "";
 let channels = {
   general: [],
   clips: [],
@@ -29,6 +33,7 @@ let channels = {
   lfg: []
 };
 let onlineUsers = [];
+let toastTimer = null;
 
 function avatarClassForName(name) {
   const palette = ["neon-cyan", "neon-orange", "neon-green", "neon-pink"];
@@ -36,9 +41,27 @@ function avatarClassForName(name) {
   return palette[total % palette.length];
 }
 
+function escapeHtml(text) {
+  return text
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll("\"", "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 function setStatus(text, isError = false) {
   authStatus.textContent = text;
   authStatus.classList.toggle("error", isError);
+}
+
+function showToast(text) {
+  toast.textContent = text;
+  toast.classList.remove("hidden");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 2600);
 }
 
 function renderMemberList() {
@@ -56,10 +79,10 @@ function renderMemberList() {
     const row = document.createElement("div");
     row.className = "member-row";
     row.innerHTML = `
-      <span class="avatar sm ${avatarClassForName(name)}">${name.charAt(0).toUpperCase()}</span>
+      <span class="avatar sm ${avatarClassForName(name)}">${escapeHtml(name.charAt(0).toUpperCase())}</span>
       <div>
-        <strong>${name}</strong>
-        <p>${name === currentUser ? "You are online" : "Ready to chat"}</p>
+        <strong>${escapeHtml(name)}</strong>
+        <p>${escapeHtml(name === currentUser ? "You are online" : "Ready to chat")}</p>
       </div>
     `;
     memberList.appendChild(row);
@@ -68,7 +91,32 @@ function renderMemberList() {
 
 function renderMessages(channelKey) {
   messageFeed.innerHTML = "";
-  (channels[channelKey] || []).forEach((message) => {
+  const visibleMessages = (channels[channelKey] || []).filter((message) => {
+    if (!searchTerm) {
+      return true;
+    }
+
+    return `${message.user} ${message.text}`.toLowerCase().includes(searchTerm);
+  });
+
+  if (!visibleMessages.length) {
+    const empty = document.createElement("div");
+    empty.className = "message";
+    empty.innerHTML = `
+      <span class="avatar message-avatar neon-cyan">?</span>
+      <div class="message-body">
+        <div class="message-meta">
+          <strong>Lagcord</strong>
+          <span class="message-time">now</span>
+        </div>
+        <p class="message-text">No messages match this search yet.</p>
+      </div>
+    `;
+    messageFeed.appendChild(empty);
+    return;
+  }
+
+  visibleMessages.forEach((message) => {
     const fragment = messageTemplate.content.cloneNode(true);
     const avatar = fragment.querySelector(".message-avatar");
     const user = fragment.querySelector(".message-user");
@@ -165,6 +213,23 @@ gifToggle.addEventListener("click", () => {
   gifPanel.classList.toggle("hidden");
 });
 
+searchInput.addEventListener("input", (event) => {
+  searchTerm = event.target.value.trim().toLowerCase();
+  renderMessages(activeChannel);
+});
+
+uiActionButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const action = button.dataset.uiAction;
+    const messages = {
+      stream: "Streaming tools are staged for the next backend pass. Shared chat is live now.",
+      raid: "Raid queue is next on the roadmap. For now, rally your squad in chat and GIF drops.",
+      quests: "Quest cards are cosmetic right now, but accounts and shared chat are functional."
+    };
+    showToast(messages[action] || "This panel is still warming up.");
+  });
+});
+
 authForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -178,6 +243,8 @@ authForm.addEventListener("submit", async (event) => {
     });
 
     setStatus(`Welcome to Lagcord, ${snapshot.username}. Your messages are now public in the room.`);
+    usernameInput.value = "";
+    passwordInput.value = "";
     await refreshSession();
   } catch (error) {
     setStatus(error.message, true);
@@ -195,6 +262,7 @@ loginButton.addEventListener("click", async () => {
     });
 
     setStatus(`Logged in as ${snapshot.username}. Squad can see your name in chat now.`);
+    passwordInput.value = "";
     await refreshSession();
   } catch (error) {
     setStatus(error.message, true);

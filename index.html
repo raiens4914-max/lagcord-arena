@@ -94,10 +94,10 @@
         </div>
         <div class="topbar-actions">
           <div class="search-box">
-            <input type="text" placeholder="Search clips, memes, teammates">
+            <input type="text" id="search-input" placeholder="Search clips, memes, teammates">
           </div>
-          <button class="ghost-button">Stream</button>
-          <button class="ghost-button accent">Start Raid</button>
+          <button class="ghost-button" type="button" data-ui-action="stream">Stream</button>
+          <button class="ghost-button accent" type="button" data-ui-action="raid">Start Raid</button>
         </div>
       </header>
 
@@ -105,7 +105,7 @@
         <div>
           <strong>Patch Notes:</strong> Nitro-style profile effects, emoji reactions, and meme alerts are live.
         </div>
-        <button class="ghost-button small">View Quests</button>
+        <button class="ghost-button small" type="button" data-ui-action="quests">View Quests</button>
       </section>
 
       <div class="content-grid">
@@ -225,6 +225,8 @@
       </div>
     </article>
   </template>
+
+  <div class="toast hidden" id="toast"></div>
 
   <script src="script.js"></script>
 </body>
